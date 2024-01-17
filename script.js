@@ -28,7 +28,7 @@ let bottomPipeImg;
 
 //movements
 let velocityX = -2; //as the pipe is moving towards left
-
+let velocityY = 0; // bird's jumping speed
 
 
 
@@ -96,4 +96,5 @@ function placePipes () {
 
     pipeArray.push(topPipe);
     pipeArray.push(bottomPipe);
+
 }
