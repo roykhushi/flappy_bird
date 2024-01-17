@@ -31,6 +31,7 @@ let velocityX = -2; //as the pipe is moving towards left
 
 
 
+
 window.onload = function() {
     board = document.getElementById("board");
     board.height = boardHeight;
@@ -52,7 +53,7 @@ window.onload = function() {
      setInterval(placePipes,1500);
 }
 
-function update() {
+function update() { //this function is called upon reloading
     requestAnimationFrame(update);
     //clearing frames
     context.clearRect(0,0,board.width,board.height);
@@ -69,10 +70,24 @@ function update() {
 }
 
 function placePipes () {
+    let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/4); //randomly placing the pipes and shifting the position upwards b/w -1/4 to -3/4
+    
+    let space = board.height/4;
+    
     let topPipe = {
         img : topPipeImg,
         x : pipeX,
-        y : pipeY,
+        y : randomPipeY,
+        width : pipeWidth,
+        height: pipeHeight,
+        passed : false // to check if the bird has passed the pipe or not
+
+    }
+
+    let bottomPipe = {
+        img : bottomPipeImg,
+        x : pipeX,
+        y : randomPipeY + pipeHeight + space, //y position of the bottom pipe
         width : pipeWidth,
         height: pipeHeight,
         passed : false // to check if the bird has passed the pipe or not
@@ -80,4 +95,5 @@ function placePipes () {
     }
 
     pipeArray.push(topPipe);
+    pipeArray.push(bottomPipe);
 }
